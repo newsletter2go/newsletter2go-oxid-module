@@ -11,4 +11,5 @@ $aLang = array(
     'HELP_SHOP_MODULE_nl2goUserName'            => 'Username for connecting Newsletter2Go',
     'SHOP_MODULE_nl2goApiKey'                   => 'Password',
     'HELP_SHOP_MODULE_nl2goApiKey'              => 'Password for connecting Newsletter2Go',
+    'SHOP_MODULE_nl2goConnect'                  => 'Connect'
 );
