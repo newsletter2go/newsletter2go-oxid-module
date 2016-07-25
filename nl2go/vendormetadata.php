@@ -24,5 +24,5 @@
  * Metadata version
  */
 
-$sVendorMetadataVersion = '3.0.09';
+$sVendorMetadataVersion = '4.0.00';
 

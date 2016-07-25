@@ -4,7 +4,7 @@
  * @created 21.04.2015
  */
 
-$sMetadataVersion = '3.0.09';
+$sMetadataVersion = '4.0.00';
 
 
 /**
@@ -14,12 +14,12 @@ $aModule = array(
     'id'           => 'Newsletter2Go',
     'title'        => 'Newsletter2Go',
     'description'  => array(
-        'de' => 'Modul für die Anbindung an Newsletter2Go. Es ermöglicht Empfänger-Synchronisation sowie das einfache Einfügen von Artikel-Informationen in enstprechende Newsletter-Vorlagen.',
-        'en' => 'Module to synchronize newsletter recipients with Newsletter2Go'
+        'de' => 'E-Mail Marketing-Integration, mit der Sie einfach Ihre Kontakte synchronisieren und Produkt-Newsletter versenden können',
+        'en' => 'Adds email marketing functionality to your E-commerce platform. Easily synchronize your contacts and send product newsletters'
     ),
     'thumbnail'    => 'picture.png',
 
-    'version'      => '3.0.09',
+    'version'      => '4.0.00',
     'author'       => 'Newsletter2Go',
     'url'          => 'https://www.newsletter2go.de',
     'email'        => 'info@newsletter2go.de',
