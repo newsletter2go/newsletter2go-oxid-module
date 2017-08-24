@@ -13,7 +13,7 @@ class nl2goCallback extends oxUBase
         $authKey = $this->getConfig()->getRequestParameter('auth_key');
         $accessToken = $this->getConfig()->getRequestParameter('access_token');
         $refreshToken = $this->getConfig()->getRequestParameter('refresh_token');
-        $companyId = $this->getConfig()->getRequestParameter('int_id');
+        $companyId = $this->getConfig()->getRequestParameter('company_id');
 
         if (isset($authKey)) {
             oxRegistry::getConfig()->saveShopConfVar(
