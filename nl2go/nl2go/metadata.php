@@ -4,7 +4,7 @@
  * @created 21.04.2015
  */
 
-$sMetadataVersion = '4.0.01';
+$sMetadataVersion = '1.0';
 
 
 /**
@@ -18,7 +18,7 @@ $aModule = array(
         'en' => 'Adds email marketing functionality to your E-commerce platform. Easily synchronize your contacts and send product newsletters.'
     ),
     'thumbnail'    => 'picture.png',
-    'version'      => '4.0.01',
+    'version'      => '4.0.0',
     'author'       => 'Newsletter2Go',
     'url'          => 'https://www.newsletter2go.de',
     'email'        => 'info@newsletter2go.de',
