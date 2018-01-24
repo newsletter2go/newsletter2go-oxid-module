@@ -6,7 +6,7 @@
 class n2goSettings extends Module_Config
 {
 
-    const N2GO_INTEGRATION_URL = 'https://ui.newsletter2go.com/integrations/connect/OX/';
+    const N2GO_INTEGRATION_URL = 'https://ui-sandbox.newsletter2go.com/integrations/connect/OX/';
 
     /**
      * Override parent render view.
@@ -30,6 +30,7 @@ class n2goSettings extends Module_Config
         $oModuleList = oxNew('oxModuleList');
         $versions = $oModuleList->getModuleVersions();
         $queryParams['version'] = str_replace('.', '', $versions['Newsletter2Go']);
+        $queryParams['callback'] = $oConfig->getShopUrl() . '?cl=nl2goCallback&fnc=getCallback';
 
         $this->_aViewData["n2goConnectUrl"] = self::N2GO_INTEGRATION_URL . '?' . http_build_query($queryParams);
 
