@@ -6,7 +6,7 @@
 class n2goSettings extends Module_Config
 {
 
-    const N2GO_INTEGRATION_URL = 'https://ui-sandbox.newsletter2go.com/integrations/connect/OX/';
+    const N2GO_INTEGRATION_URL = 'https://ui.newsletter2go.com/integrations/connect/OX/';
 
     /**
      * Override parent render view.
