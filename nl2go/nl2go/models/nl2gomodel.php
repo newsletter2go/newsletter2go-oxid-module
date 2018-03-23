@@ -366,22 +366,22 @@ class nl2goModel extends oxUBase
 
         $article = oxNew('oxarticle');
         $article->load($result['oxarticles.OXID']);
-        if (array_search('oxarticles.OXID', $attributeIds) === false) {
+        if (!in_array('oxarticles.OXID', $attributeIds, true)) {
             unset($result['oxarticles.OXID']);
         }
 
-        if (array_search('images', $attributeIds) !== false) {
+        if (in_array('images', $attributeIds, true)) {
             $pictureLimit = oxRegistry::getConfig()->getConfigParam('iPicCount');
             $result['images'] = array();
             foreach (range(1, $pictureLimit) as $index) {
-                if (($imageUrl = $article->getPictureUrl($index)) && !(strstr($imageUrl, 'nopic.jpg'))) {
+                if (($imageUrl = $article->getPictureUrl($index)) && strpos($imageUrl, 'nopic.jpg') === false) {
                     $result['images'][$index] = $imageUrl;
                 }
             }
         }
         $link = $article->getLink();
         $host = parse_url($link,PHP_URL_HOST).'/';
-        if (array_search('link', $attributeIds) !== false) {
+        if (in_array('link', $attributeIds, true)) {
             //$linkHelp = oxNew('oxseoencoderarticle');
 
             $result['link'] =  ltrim(substr($link, strpos($link,$host) + strlen($host)), '/');
@@ -391,22 +391,22 @@ class nl2goModel extends oxUBase
             }
         }
 
-        if (array_search('vat', $attributeIds) !== false) {
+        if (in_array('vat', $attributeIds, true)) {
             $result['vat'] = $this->getConfig()->getConfigParam('dDefaultVAT') * 0.01;
         }
 
-        if (array_search('url', $attributeIds) !== false) {
+        if (in_array('url', $attributeIds, true)) {
             $result['url'] =  rtrim(substr($link,0, strpos($link, $host) + strlen($host)), '/').'/';
         }
 
         $vat =(isset($result['oxarticles.OXVAT']) && strlen($result['oxarticles.OXVAT']) > 0 ? $result['oxarticles.OXVAT'] :$this->getConfig()->getConfigParam('dDefaultVAT')) *0.01;
 
 
-        if (isset($result['oldPriceNet']) && $vat> 0) {
+        if ($vat> 0 && isset($result['oldPriceNet'])) {
             $result['oldPriceNet'] = number_format($result['oldPriceNet'] / (1 + $vat), 2);
         }
 
-        if (isset($result['newPriceNet'])  && $vat > 0) {
+        if ($vat > 0 && isset($result['newPriceNet'])) {
             $result['newPriceNet'] = number_format($result['newPriceNet'] / (1 + $vat), 2);
         }
 
