@@ -19,6 +19,7 @@ class nl2goApi extends oxUBase
         $params['group'] = $this->getConfig()->getRequestParameter('group');
         $params['fields'] = $this->getConfig()->getRequestParameter('fields', true);
         $params['emails'] = $this->getConfig()->getRequestParameter('emails', true);
+        $params['shop_id'] = $this->getConfig()->getRequestParameter('shop_id', false);
 
         $model = oxNew('nl2gomodel');
         $customers = $model->getCustomers($params);
@@ -93,6 +94,7 @@ class nl2goApi extends oxUBase
         $params = array();
         $params['lang'] = $this->getConfig()->getRequestParameter('lang');
         $params['id'] = $this->getConfig()->getRequestParameter('id');
+        $params['shop_id'] = $this->getConfig()->getRequestParameter('shop_id', false);
 
         $language = null;
 
@@ -238,8 +240,9 @@ class nl2goApi extends oxUBase
 
         $subscribed = $this->getConfig()->getRequestParameter('subscribed');
         $group = $this->getConfig()->getRequestParameter('group');
+        $shopId = $this->getConfig()->getRequestParameter('shop_id', 0);
 
-        if (($count = $model->getCustomerCount($subscribed, $group)) !== false) {
+        if (($count = $model->getCustomerCount($subscribed, $group, $shopId)) !== false) {
             $res = Nl2go_ResponseHelper::generateSuccessResponse(array('count' => $count));
             $this->sendResponse($res);
         } else {
