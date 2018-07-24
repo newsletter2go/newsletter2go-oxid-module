@@ -224,6 +224,10 @@ class nl2goModel extends oxUBase
             $conditions[] = " oxuser.OXTIMESTAMP >= '$ts' ";
         }
 
+        if (isset($params['shop_id']) && $params['shop_id']) {
+            $conditions[] = sprintf(" oxuser.OXSHOPID = %d", intval($params['shop_id']));
+        }
+
         if (count($conditions)) {
             $queryWhere = ' WHERE ' . implode(' AND ', $conditions);
         }
@@ -267,7 +271,7 @@ class nl2goModel extends oxUBase
         return array('data' => $result, 'total' => $rsTotal->fields['total']);
     }
 
-    public function getCustomerCount($subscribed, $group)
+    public function getCustomerCount($subscribed, $group, $shopId = 0)
     {
 
         $start = microtime();
@@ -280,6 +284,9 @@ class nl2goModel extends oxUBase
             'SELECT COUNT(oxuser.OXID) as count FROM oxuser LEFT JOIN oxnewssubscribed ON oxnewssubscribed.OXUSERID = oxuser.OXID';
         if ($subscribed) {
             $conditions[] = ' oxnewssubscribed.OXDBOPTIN = 1 ';
+        }
+        if ($shopId) {
+            $conditions[] = sprintf(" oxuser.OXSHOPID = %d", intval($shopId));
         }
         if (strlen($group) > 0) {
             $conditions[] =
@@ -355,6 +362,9 @@ class nl2goModel extends oxUBase
                             LEFT JOIN $manufView ON $manufView.OXID = $articleView.OXMANUFACTURERID
                             LEFT JOIN $artextView ON $artextView.OXID = $articleView.OXID ";
 
+        if (isset($params['shop_id']) && $params['shop_id']) {
+            $queryWhere .= sprintf(" AND $articleView.OXSHOPID = %d", intval($params['shop_id']));
+        }
 
         $oDb = oxDb::getDb(oxDb::FETCH_MODE_ASSOC);
         $rsProduct = $oDb->execute($querySelect . $queryFrom . $queryWhere);
